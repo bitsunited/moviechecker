@@ -1,0 +1,4 @@
+#!/bin/sh
+
+java -Xmx128M -jar moviechecker.jar $@
+
