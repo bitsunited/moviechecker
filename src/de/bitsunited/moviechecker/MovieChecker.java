@@ -237,6 +237,14 @@ public class MovieChecker {
         }
 
         database.setAutoSave(true);
+        
+        List<Path> pathList = database.getPathList();
+        for (Path path : pathList) {
+            if (!Files.isRegularFile(path)) {
+                database.removeEntry(path);
+            }
+        }
+        
         return database;
     }
 
