@@ -164,6 +164,10 @@ public class MovieChecker {
         if (!Util.hasFileExtension(finalPath, "mkv")) {
             finalPath = Util.replaceFileExtension(finalPath, "mkv");
         }
+        
+        if (Files.isRegularFile(newPath)) {
+            Files.delete(newPath);
+        }
 
         String[] ffmpegCommand = new String[] { "ffmpeg", "-hide_banner", "-loglevel", "quiet", "-i", inputPath.toString(), "-crf", "20", "-map", "0",
                 "-acodec", "copy", "-scodec", "copy", "-c:v", "libx264", "-threads", "0", "-preset", "veryslow", newPath.toString() };

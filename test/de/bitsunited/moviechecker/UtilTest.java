@@ -13,9 +13,12 @@ import org.junit.Test;
 public class UtilTest {
     @Test
     public void testPrintDuration() {
-        assertEquals("17.006sec", Util.print(Duration.ofSeconds(17).plusMillis(6)));
-        assertEquals("17.060sec", Util.print(Duration.ofSeconds(17).plusMillis(60)));
-        assertEquals("17.600sec", Util.print(Duration.ofSeconds(17).plusMillis(600)));
+        assertEquals("17 seconds", Util.print(Duration.ofSeconds(17).plusMillis(6)));
+        assertEquals("17 minutes 1 second", Util.print(Duration.ofMinutes(17).plusSeconds(1)));
+        assertEquals("17 minutes", Util.print(Duration.ofMinutes(17)));
+        assertEquals("1 minute 12 seconds", Util.print(Duration.ofSeconds(72)));
+        assertEquals("2 hours 13 minutes 23 seconds", Util.print(Duration.ofHours(2).plusMinutes(13).plusSeconds(23)));
+        assertEquals("1 hour 1 minute 1 second", Util.print(Duration.ofHours(1).plusMinutes(1).plusSeconds(1)));
     }
 
     @Test

@@ -15,20 +15,41 @@ public class Util {
     }
 
     public static String print(Duration duration) {
-        Objects.requireNonNull(duration);
+        if (duration == null) {
+            return "";
+        }
+        long seconds = duration.getSeconds() % 60;
+        long minutes = duration.toMinutes() % 60;
+        long hours = duration.toHours();
 
         StringBuilder sb = new StringBuilder();
-        sb.append(duration.getSeconds());
-        sb.append('.');
-        long millis = duration.getNano() / 1000000;
-        if (millis < 100) {
-            sb.append('0');
+        if (hours > 0) {
+            sb.append(hours);
+            sb.append(" hour");
+            if (hours != 1) {
+                sb.append('s');
+            }
         }
-        if (millis < 10) {
-            sb.append('0');
+        if (minutes > 0) {
+            if (sb.length() > 0) {
+                sb.append(' ');
+            }
+            sb.append(minutes);
+            sb.append(" minute");
+            if (minutes != 1) {
+                sb.append('s');
+            }
         }
-        sb.append(millis);
-        sb.append("sec");
+        if (seconds > 0 || minutes == 0) {
+            if (sb.length() > 0) {
+                sb.append(' ');
+            }
+            sb.append(seconds);
+            sb.append(" second");
+            if (seconds != 1) {
+                sb.append('s');
+            }
+        }
 
         return sb.toString();
     }
