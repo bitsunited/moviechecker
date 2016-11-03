@@ -13,6 +13,7 @@ import org.junit.Test;
 public class UtilTest {
     @Test
     public void testPrintDuration() {
+        assertEquals("", Util.print(null));
         assertEquals("17 seconds", Util.print(Duration.ofSeconds(17).plusMillis(6)));
         assertEquals("17 minutes 1 second", Util.print(Duration.ofMinutes(17).plusSeconds(1)));
         assertEquals("17 minutes", Util.print(Duration.ofMinutes(17)));
@@ -37,7 +38,7 @@ public class UtilTest {
         assertEquals(Paths.get("file.mkv").toAbsolutePath(), Util.replaceFileExtension(Paths.get("file").toAbsolutePath(), "mkv"));
         assertEquals(Paths.get(".file.mkv").toAbsolutePath(), Util.replaceFileExtension(Paths.get(".file").toAbsolutePath(), "mkv"));
     }
-    
+
     @Test
     public void testPrintFileSize() {
         assertEquals("1024 B", Util.printFileSize(1024));
@@ -47,10 +48,10 @@ public class UtilTest {
         assertEquals("1024 MB", Util.printFileSize(1024000000));
         assertEquals("14 GB", Util.printFileSize(14000000000l));
     }
-    
+
     @Test
     public void testFindParameter() {
-        String[] args = new String[] { "mode" , "-d", "database.xml", "--count" , "10", "-y"};
+        String[] args = new String[] { "mode", "-d", "database.xml", "--count", "10", "-y" };
         assertEquals("database.xml", Util.findParameter(args, "-d", "--database"));
         assertEquals("10", Util.findParameter(args, "-c", "--count"));
         assertNull(Util.findParameter(args, "-x"));

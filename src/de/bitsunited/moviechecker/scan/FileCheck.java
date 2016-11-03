@@ -29,6 +29,9 @@ public class FileCheck extends RecursiveTask<Result> {
         if (Util.hasFileExtension(file, "old")) {
             return ResultState.OLD_FILE.getResult();
         }
+        if (file.getFileName().toString().startsWith(".temp.")) {
+            return null;
+        }
         try {
             Path absolutFile = file.toAbsolutePath();
             Instant fileTime = Files.getLastModifiedTime(absolutFile).toInstant();
@@ -49,7 +52,7 @@ public class FileCheck extends RecursiveTask<Result> {
 
             database.addEntry(absolutFile, fileTime, stdOut, errOut);
 
-            return ResultState.UPDATED.getResult();
+            return recordedTime == null ? ResultState.NEW.getResult() : ResultState.UPDATED.getResult();
         } catch (IOException | InterruptedException e) {
             e.printStackTrace();
             return ResultState.EXCEPTION.getResult();

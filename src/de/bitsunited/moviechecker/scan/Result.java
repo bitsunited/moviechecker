@@ -8,7 +8,7 @@ import java.util.concurrent.RecursiveTask;
 
 public class Result {
     public enum ResultState {
-        UPDATED, UNCHANGED, EXCEPTION, OLD_FILE;
+        NEW, UPDATED, UNCHANGED, EXCEPTION, OLD_FILE;
 
         public Result getResult() {
             return Result.of(this);

@@ -26,8 +26,7 @@ public class FileWalker extends RecursiveTask<Result> {
     @Override
     protected Result compute() {
         try {
-            return Result.ofTasks(Files.list(directory).filter(f -> Files.isRegularFile(f)).map(f -> handle(f))
-                    .collect(Collectors.toList()));
+            return Result.ofTasks(Files.list(directory).filter(f -> Files.isRegularFile(f)).map(f -> handle(f)).collect(Collectors.toList()));
         } catch (IOException e) {
             e.printStackTrace();
             return ResultState.EXCEPTION.getResult();

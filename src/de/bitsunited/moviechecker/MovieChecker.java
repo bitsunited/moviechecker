@@ -164,7 +164,7 @@ public class MovieChecker {
         if (!Util.hasFileExtension(finalPath, "mkv")) {
             finalPath = Util.replaceFileExtension(finalPath, "mkv");
         }
-        
+
         if (Files.isRegularFile(newPath)) {
             Files.delete(newPath);
         }
@@ -241,14 +241,14 @@ public class MovieChecker {
         }
 
         database.setAutoSave(true);
-        
+
         List<Path> pathList = database.getPathList();
         for (Path path : pathList) {
             if (!Files.isRegularFile(path)) {
                 database.removeEntry(path);
             }
         }
-        
+
         return database;
     }
 
