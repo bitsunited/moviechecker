@@ -23,11 +23,11 @@ import org.junit.Test;
 
 public class DatabaseTest {
 
-    private static final Path PERSISTENCE_PATH = Paths.get("test/tmp/db.xml");
+    private static final Path PERSISTENCE_PATH = Paths.get("target/tmp/db.xml");
 
-    private static final Path P1 = Paths.get("test/tmp/1.file").toAbsolutePath();
+    private static final Path P1 = Paths.get("target/tmp/1.file").toAbsolutePath();
 
-    private static final Path P2 = Paths.get("test/tmp/2.file").toAbsolutePath();
+    private static final Path P2 = Paths.get("target/tmp/2.file").toAbsolutePath();
 
     private static final Instant T1 = LocalDateTime.of(2016, 10, 26, 11, 03, 46).toInstant(ZoneOffset.UTC);
 
